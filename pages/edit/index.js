@@ -1,15 +1,25 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 import arrowLeft from "../../public/arrow-left.svg"
 
 const EditNote = () => {
+  const [dataNote, setDataNote] = useState('')
   const [title, setTitle] = useState('')
   const [note, setNote] = useState('')
   const router = useRouter();
-  const {pid} = router.query;
+  const {noteId} = router.query;
+
+  useEffect(() => {
+    const getNote = async () => {
+      const response = await fetch('http://localhost:5000/note');
+      const data = await response.json();
+      setDataNote(data);
+    }
+    getNote();
+  }, []);
 
   const saveNote = async(e) => {
     e.preventDefault();

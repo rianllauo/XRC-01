@@ -18,6 +18,12 @@ body {
 .inActive{
   left: -500px;
 }
+.demo-3{
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
 /* 
 @media (prefers-color-scheme: dark) {
   html {

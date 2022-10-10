@@ -8,12 +8,13 @@ import arrowLeft from "../public/arrow-left.svg"
 const AddNote = () => {
   const [title, setTitle] = useState('')
   const [note, setNote] = useState('')
+  const [archive, setArchive] = useState(false);
   const router = useRouter();
+
 
   const saveNote = async(e) => {
     e.preventDefault();
-    const catatan = {title, note};
-    console.log(catatan)
+    const catatan = {title, note, archive};
 
     await fetch('http://localhost:5000/note', {
       method: "POST",
@@ -26,32 +27,25 @@ const AddNote = () => {
   }
 
   return (
-    <div className='max-w-md mx-auto px-4 py-5'>
+    <div className='max-w-md mx-auto px-4 py-5 relative '>
         <Link href="/">
-          <a> <Image src={arrowLeft} alt='back' width="26px" height="26px"/></a>
+          <a> <Image src={arrowLeft} alt='back' width="20px" height="20px"/></a>
         </Link>
 
 
-        <form onSubmit={saveNote}>
-          <div>
-            <label>title</label>
-            <div>
-              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Judul' />
+        <form className='mt-8' onSubmit={saveNote}>
+            {/* <label>title</label> */}
+            <div className='py-2'>
+              <input className='bg-background px-2 py-1 text-xl w-full font-semibold outline-none' type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Judul' />
             </div>
-          </div>
 
-          <div>
-            <label>Note</label>
-            <div>
-              <input type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder='masukan catatan kamu' />
+            {/* <label>Note</label> */}
+            <div className='py-2'>
+              <textarea className='bg-background px-2 py-1 text-base  text-[#999] font-normal w-full h-screen outline-none' type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder='masukan catatan kamu' />
             </div>
-          </div>
-
-          <div>
-            <div>
-              <button>Simpan</button>
+            <div className='absolute top-0 right-0 pt-4 pr-5'>
+              <button className='px-3 py-2 border text-sm border-[#FFF] rounded-md'>Simpan</button>
             </div>
-          </div>
         </form>
 
     </div>
