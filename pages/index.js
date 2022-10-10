@@ -1,9 +1,25 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 import AddButton from '../components/AddButton'
+import ArsipButton from '../components/ArsipButton'
 import NoteList from '../components/NoteList'
 
-export default function Home() {
+export default function Home({dataNote}) {
+
+  // const [dataNote, setNote] = useState([])
+
+  //   useEffect(() => {
+  //       fectData()
+  //   }, []);
+
+  //   const fectData = async() => {
+  //     const response = await fetch('http://localhost:5000/note');
+  //     const data =  await response.json();
+  //     setNote(data);
+  // }
+
+
   return (
     
     <div className="max-w-md mx-auto px-4 py-5 overflow-x-hidden">
@@ -13,18 +29,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <NoteList/>
-      <Link href="/addnote" passHref>
-        <AddButton />
-      </Link>
+      <div className='flex'>
+        <Link href="/add" passHref>
+          <AddButton />
+        </Link>
+
+        <Link href="/arsip" passHref>
+          <ArsipButton />
+        </Link>
+      </div>
+      
+
+      <NoteList dataNote={dataNote}/>  
 
     </div>
   )
 }
 
+export const getStaticProps = async () =>{
+  const response = await fetch("http://localhost:5000/note");
+  const data = await response.json();
+
+  return {
+    props : {
+      dataNote : data
+    }
+  }
+}
 
 // export const getServerSideProps = async () => {
-//   const response = await fetch("https://my-json-server.typicode.com/rianllauo/fakeapi/data");
+//   const response = await fetch("http://localhost:5000/note");
 //   const data = await response.json();
 //   return {
 //     props:{

@@ -2,14 +2,14 @@ const getData = () => {
     return [
         {   
             id: 1,
-            title : "Babel",
+            title : "Hai, Selamat datang di Notemee",
             note : "Babel merupakan tools open-source yang digunakan untuk mengubah sintaks ECMAScript 2015+ menjadi sintaks yang idkung oleh JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX.",
             time : "Sun March 14 2022"
         },
         {
             id: 2,
             title : "Functional Component",
-            note : "Functional component merupakan React component yang dibuat menggunakan fungsi JavaScript. Agar fungsi JavaScript dapat disebut component ia harus mengembalikan React element dan dipanggil layaknya React component.",
+            note : "Functional component ct component.",
             time : "Sun March 14 2022"
         },
         {
