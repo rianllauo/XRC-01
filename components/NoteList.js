@@ -34,7 +34,7 @@ const NoteList = ({dataNote}) => {
                     <li key={item.id} className="max-h-52 overflow-hidden p-3 border-2 border-darkLighter rounded-md z-10">
                         <h1 className='text-sm font-semibold mb-1.5 leading-none'>{item.title}</h1>
                         <div className='pb-3 max-h-38 overflow-hidden demo-3'>
-                            <p className='text-xs text-[#999] leading-tight'>{item.note}</p>
+                            <p className='text-xs text-[#999] leading-tight'>{item.textNote}</p>
                         </div>
                         {/* <button onClick={() => hapusNote(item.id)}>Delete</button> */}
                     </li>

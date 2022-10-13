@@ -5,9 +5,13 @@ import Header from '../components/Header'
 import AddButton from '../components/AddButton'
 import ArsipButton from '../components/ArsipButton'
 import NoteList from '../components/NoteList'
+import { getData } from '../data'
 
 export default function Home({dataNote}) {
 
+  // const dataNote = getData;
+
+  // const [notes, setNotes] = useState(getData);
 
   //   useEffect(() => {
   //       fectData()
@@ -24,7 +28,7 @@ export default function Home({dataNote}) {
       return el.archive === false
   });
     
-  //   console.log(filterArchive);
+    console.log(filterArchive);
 
   return (
     
@@ -59,7 +63,7 @@ export default function Home({dataNote}) {
 }
 
 export const getServerSideProps = async () =>{
-  const response = await fetch("http://localhost:5000/note");
+  const response = await fetch("https://6347b41a0484786c6e8665bf.mockapi.io/notes");
   const data = await response.json();
 
   return {

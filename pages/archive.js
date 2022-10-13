@@ -41,7 +41,7 @@ export default function Home({dataNote}) {
                         <li key={item.id} className="max-h-52 overflow-hidden p-3 border-2 border-darkLighter rounded-md z-10">
                             <h1 className='text-sm font-semibold mb-1.5 leading-none'>{item.title}</h1>
                             <div className='pb-3 max-h-38 overflow-hidden demo-3'>
-                                <p className='text-xs text-[#999] leading-tight'>{item.note}</p>
+                                <p className='text-xs text-[#999] leading-tight'>{item.textNote}</p>
                             </div>
                             {/* <button onClick={() => hapusNote(item.id)}>Delete</button> */}
                         </li>
@@ -58,7 +58,7 @@ export default function Home({dataNote}) {
 }
 
 export const getServerSideProps = async () =>{
-  const response = await fetch("http://localhost:5000/note");
+  const response = await fetch("https://6347b41a0484786c6e8665bf.mockapi.io/notes");
   const data = await response.json();
 
   return {

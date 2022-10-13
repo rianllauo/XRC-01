@@ -1,37 +1,23 @@
 {
   "note": [
     {
-      "title": "asddasdsad",
-      "note": "",
-      "id": 3
+      "id": 1,
+      "archive" : false,
+      "title": "catatan 1",
+      "note": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
-      "title": "asdasdasd",
-      "note": "",
-      "id": 4
+      "id": 2,
+      "archive" : false,
+      "title": "catatan 2",
+      "note": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
-      "title": "sdasd",
-      "note": "asddsadd",
-      "id": 5
-    },
-    {
-      "title": "asdasd",
-      "note": "asdasdas",
-      "archive": true,
-      "id": 6
-    },
-    {
-      "title": "asdasdasd 2123",
-      "note": "",
-      "archive": true,
-      "id": 7
-    },
-    {
-      "title": "asdasd31231",
-      "note": "assdasdasd",
-      "archive": false,
-      "id": 8
+      "id": 3,
+      "archive" : false,
+      "title": "catatan 3",
+      "note": "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }
+    
   ]
 }

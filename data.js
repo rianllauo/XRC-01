@@ -1,5 +1,5 @@
-const getData = () => {
-    return [
+let getData = 
+    [
         {   
             id: 1,
             archive : false,
@@ -22,6 +22,6 @@ const getData = () => {
             time : "Sun March 14 2022"
         }
     ]
-}
+
 
 export {getData};

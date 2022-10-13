@@ -12,14 +12,13 @@ const EditNoteId = () => {
   const [archive, setArchive] = useState()
   const router = useRouter();
   const {editId} = router.query;
-  console.log({editId})
 
   useEffect(() => {
     const getNoteById = async () => {
-      const response = await fetch(`http://localhost:5000/note/${editId}`);
+      const response = await fetch(`https://6347b41a0484786c6e8665bf.mockapi.io/notes/${editId}`);
       const data = await response.json();
       setTitle(data.title);
-      setNote(data.note);
+      setNote(data.textNote);
       setArchive(data.archive);
     }
     getNoteById();
@@ -28,9 +27,8 @@ const EditNoteId = () => {
   const updateNote = async(e) => {
     e.preventDefault();
     const catatan = {title, note, archive};
-    console.log(catatan)
 
-    await fetch(`http://localhost:5000/note/${editId}`, {
+    await fetch(`https://6347b41a0484786c6e8665bf.mockapi.io/notes/${editId}`, {
       method: "PUT",
       body: JSON.stringify(catatan),
       headers: {
@@ -42,12 +40,12 @@ const EditNoteId = () => {
   }
 
   const archiveNote = (id) => {
-   setArchive(true) & updateNote();
+   setArchive(true) ;
    
   }
 
   const deleteNote = async(id) =>{
-    await fetch(`http://localhost:5000/note/${id}` , {
+    await fetch(`https://6347b41a0484786c6e8665bf.mockapi.io/notes/${id}` , {
       method : "DELETE",
       headers : {
         'Content-Type' : 'aplication/json'

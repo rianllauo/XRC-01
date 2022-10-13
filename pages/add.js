@@ -4,27 +4,59 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 import arrowLeft from "../public/arrow-left.svg"
+import { getData } from '../data'
 
 const AddNote = () => {
+  // const dataNote = getData;
+  const [notes,setNotes] = useState([
+    {   
+        id: 1,
+        archive : false,
+        title : "Hai, Selamat datang di Notemee",
+        note : "Babel merupakan tools open-source yang digunakan untuk mengubah sintaks ECMAScript 2015+ menjadi sintaks yang idkung oleh JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX.",
+        time : "Sun March 14 2022"
+    },
+    {
+        id: 2,
+        archive : false,
+        title : "Functional Component",
+        note : "Functional component ct component.",
+        time : "Sun March 14 2022"
+    },
+    {
+        id : 3,
+        archive : false,
+        title : "Modul Bundler",
+        note : "Dalam konteks pemrograman JavaScript, module bundler merupakan tools yang digunakan untuk menggabungkan seluruh modul JavaScript yang digunakan oleh aplikasi menjadi satu berkas.",
+        time : "Sun March 14 2022"
+    }
+])
+
   const [title, setTitle] = useState('')
-  const [note, setNote] = useState('')
-  const [archive, setArchive] = useState(false);
+  const [textNote, setTextNote] = useState('')
+  // const [archive, setArchive] = useState(false);
   const router = useRouter();
 
-
-  const saveNote = async(e) => {
+  const saveNote = (e) => {
     e.preventDefault();
-    const catatan = {title, note, archive};
+    const catatan = {title, textNote};
 
-    await fetch('http://localhost:5000/note', {
-      method: "POST",
-      body: JSON.stringify(catatan),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-    router.push("/");
+    setNotes(JSON.stringify(catatan));
+    console.log(catatan)
   }
+    // const saveNote = async(e) => {
+  //   e.preventDefault();
+  //   const catatan = {title, note, archive};
+  
+  //   await fetch('http://localhost:5000/note', {
+  //     method: "POST",
+  //     body: JSON.stringify(catatan),
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  //   router.push("/");
+  // }
 
   return (
     <div className='max-w-md mx-auto px-4 py-5 relative '>
@@ -41,15 +73,17 @@ const AddNote = () => {
 
             {/* <label>Note</label> */}
             <div className='py-2'>
-              <textarea className='bg-background px-2 py-1 text-base  text-[#999] font-normal w-full h-screen outline-none' type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder='masukan catatan kamu' />
+              <textarea className='bg-background px-2 py-1 text-base  text-[#999] font-normal w-full h-screen outline-none' type="text" value={textNote} onChange={(e) => setTextNote(e.target.value)} placeholder='masukan catatan kamu' />
             </div>
             <div className='absolute top-0 right-0 pt-4 pr-5'>
               <button className='px-3 py-2 border text-sm border-[#FFF] rounded-md'>Simpan</button>
             </div>
         </form>
 
+        <p>{title} - {textNote}</p>
+
     </div>
   )
 }
 
-export default AddNote
+export default AddNote;
