@@ -1,14 +1,16 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
 import Image from 'next/image'
-import arrowLeft from "../../public/arrow-left.svg"
+import arrowLeft from "/public/arrow-left.svg"
+import trash from "/public/trash-2.svg"
+import bookmark from "/public/bookmark.svg"
+import Swal from 'sweetalert2'
 
 const EditNoteId = () => {
   // const [dataNote, setDataNote] = useState('')
   const [title, setTitle] = useState('')
-  const [note, setNote] = useState('')
+  const [textNote, setNote] = useState('')
   const [archive, setArchive] = useState()
   const router = useRouter();
   const {editId} = router.query;
@@ -26,7 +28,7 @@ const EditNoteId = () => {
 
   const updateNote = async(e) => {
     e.preventDefault();
-    const catatan = {title, note, archive};
+    const catatan = {title, textNote, archive};
 
     await fetch(`https://6347b41a0484786c6e8665bf.mockapi.io/notes/${editId}`, {
       method: "PUT",
@@ -37,6 +39,7 @@ const EditNoteId = () => {
     });
     
     router.push("/");
+    
   }
 
   const archiveNote = (id) => {
@@ -46,27 +49,42 @@ const EditNoteId = () => {
 
   const deleteNote = async(id) =>{
     await fetch(`https://6347b41a0484786c6e8665bf.mockapi.io/notes/${id}` , {
-      method : "DELETE",
-      headers : {
-        'Content-Type' : 'aplication/json'
+    method : "DELETE",
+    headers : {
+      'Content-Type' : 'aplication/json'
       }
     });
     router.push('/')
-  }
+    Swal.fire({
+      position: 'bottom-end',
+      html : '<p>Catatan di hapus</p>',
+      width: '230px',
+      padding: '0 0 14px 0',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }  
 
   return (
     <div className='max-w-md mx-auto px-4 py-5'>
-        <Link href="/">
-          <a> <Image src={arrowLeft} alt='back' width="26px" height="26px"/></a>
-        </Link>
+        {/* <Link href="/">
+          
+        </Link> */}
 
-        <div className='absolute top-0 right-[80px] pt-4 pr-5'>
-          <button className='px-3 py-2 bg-[#CA3B3B] text-sm rounded-md' onClick={() => deleteNote(editId)}>Hapus</button>
-        </div>
+        <div className='w-full flex items-center justify-end'>
+          <div className=''>
+            <button className='px-3  text-sm rounded-md' onClick={() => deleteNote(editId)}>
+              <Image src={trash} alt="hapus" width="26px" height="26px" />
+            </button>
+          </div>
 
-        <div className='absolute top-0 right-[160px] pt-4 pr-5'>
-          <button className='px-3 py-2 bg-[#CA3B3B] text-sm rounded-md' onClick={() => archiveNote(editId)}>Arsipkan</button>
+          <div className=''>
+            <button className='px-3  text-sm rounded-md' onClick={() => archiveNote(editId)}>
+              <Image src={bookmark} alt="hapus" width="26px" height="26px" />
+            </button>
+          </div>
         </div>
+        
 
         <form className='mt-8' onSubmit={updateNote}>
             <div className='py-2'>
@@ -75,13 +93,15 @@ const EditNoteId = () => {
 
           
             <div className='py-2'>
-              <textarea className='bg-background px-2 py-1 text-base text-[#999] font-normal w-full h-screen outline-none' type="text" value={note} onChange={(e) => setNote(e.target.value)} placeholder='masukan catatan kamu' />
+              <textarea className='bg-background px-2 py-1 text-base text-[#999] font-normal w-full h-screen outline-none' type="text" value={textNote} onChange={(e) => setNote(e.target.value)} placeholder='masukan catatan kamu' />
             </div>
           
 
           
-            <div className='absolute top-0 right-0 pt-4 pr-5'>
-              <button className='px-3 py-2 bg-primary text-sm rounded-md'>Simpan</button>
+            <div className='absolute top-0 left-0 pt-3'>
+              <button className='px-3 py-2 text-sm rounded-md'>
+                <Image src={arrowLeft} alt='back' width="26px" height="26px"/>
+              </button>
             </div>
         </form>
 

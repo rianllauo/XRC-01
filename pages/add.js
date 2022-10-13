@@ -4,59 +4,36 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Image from 'next/image'
 import arrowLeft from "../public/arrow-left.svg"
-import { getData } from '../data'
+import Swal from 'sweetalert2'
 
 const AddNote = () => {
   // const dataNote = getData;
-  const [notes,setNotes] = useState([
-    {   
-        id: 1,
-        archive : false,
-        title : "Hai, Selamat datang di Notemee",
-        note : "Babel merupakan tools open-source yang digunakan untuk mengubah sintaks ECMAScript 2015+ menjadi sintaks yang idkung oleh JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX.",
-        time : "Sun March 14 2022"
-    },
-    {
-        id: 2,
-        archive : false,
-        title : "Functional Component",
-        note : "Functional component ct component.",
-        time : "Sun March 14 2022"
-    },
-    {
-        id : 3,
-        archive : false,
-        title : "Modul Bundler",
-        note : "Dalam konteks pemrograman JavaScript, module bundler merupakan tools yang digunakan untuk menggabungkan seluruh modul JavaScript yang digunakan oleh aplikasi menjadi satu berkas.",
-        time : "Sun March 14 2022"
-    }
-])
-
   const [title, setTitle] = useState('')
   const [textNote, setTextNote] = useState('')
-  // const [archive, setArchive] = useState(false);
+  const [archive, setArchive] = useState(false);
   const router = useRouter();
 
-  const saveNote = (e) => {
+  const saveNote = async(e) => {
     e.preventDefault();
-    const catatan = {title, textNote};
-
-    setNotes(JSON.stringify(catatan));
-    console.log(catatan)
-  }
-    // const saveNote = async(e) => {
-  //   e.preventDefault();
-  //   const catatan = {title, note, archive};
+    const catatan = {title, textNote, archive};
   
-  //   await fetch('http://localhost:5000/note', {
-  //     method: "POST",
-  //     body: JSON.stringify(catatan),
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     }
-  //   });
-  //   router.push("/");
-  // }
+    await fetch('https://6347b41a0484786c6e8665bf.mockapi.io/notes', {
+      method: "POST",
+      body: JSON.stringify(catatan),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    router.push("/");
+    Swal.fire({
+      position: 'bottom-end',
+      html : '<p>Menambah catatan</p>',
+      width: '250px',
+      padding: '0 0 14px 0',
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
 
   return (
     <div className='max-w-md mx-auto px-4 py-5 relative '>

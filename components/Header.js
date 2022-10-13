@@ -12,12 +12,12 @@ const Header = () => {
 
   return (
     <header>
-      <nav className='px-5 py-3 flex justify-between items-center bg-white max-w-md mx-auto border-b border-darkLighter'>
+      <nav className='px-5 py-4 flex justify-between items-center bg-white max-w-md mx-auto border-b border-darkLighter'>
         <div className='flex items-center'>
           <button className='flex items-center' onClick={toggleClass}>
             <Image src={menuLogo} alt='menu' width="24px" height="24px" />
           </button>
-          <h1 href="" className='text-lg text-slate-800 ml-4'>NoteMee</h1>
+          <h1 href="" className='text-xl text-slate-800 ml-4'>WeeNote</h1>
         </div>
         <Image src={userImage} alt="user" width="30px" height="30px" />
       </nav>
